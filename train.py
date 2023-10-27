@@ -87,7 +87,7 @@ def main(config_path):
     # load pretrained F0 model
     F0_path = config.get('F0_path', False)
     F0_model = JDCNet(num_class=1, seq_len=192)
-    params = torch.load(F0_path, map_location='cpu')['net']
+    params = torch.load(F0_path, map_location='cpu')['model']
     F0_model.load_state_dict(params)
     
     # build model
