@@ -72,8 +72,9 @@ class MelDataset(torch.utils.data.Dataset):
             random_scale = 0.5 + 0.5 * np.random.random()
             wave_tensor = random_scale * wave_tensor
 
-        mel_tensor = self.to_melspec(wave_tensor)
-        mel_tensor = (torch.log(1e-5 + mel_tensor) - self.mean) / self.std
+        # mel_tensor = self.to_melspec(wave_tensor)
+        # mel_tensor = (torch.log(1e-5 + mel_tensor) - self.mean) / self.std
+        mel_tensor = self._preprocess(wave_tensor)
         mel_length = mel_tensor.size(1)
         if mel_length > self.max_mel_length:
             random_start = np.random.randint(0, mel_length - self.max_mel_length)
@@ -81,7 +82,7 @@ class MelDataset(torch.utils.data.Dataset):
 
         return mel_tensor, label
 
-    def _preprocess(self, wave_tensor, ):
+    def _preprocess(self, wave_tensor):
         mel_tensor = self.to_melspec(wave_tensor)
         mel_tensor = (torch.log(1e-5 + mel_tensor) - self.mean) / self.std
         return mel_tensor
