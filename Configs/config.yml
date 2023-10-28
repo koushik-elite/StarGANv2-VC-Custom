@@ -10,9 +10,9 @@ fp16_run: true
 train_data: "Data/train_list.txt"
 val_data: "Data/val_list.txt"
 
-F0_path: "Utils/JDC/bst.t7"
+F0_path: "Utils/JDC/epoch_00100.pth"
 ASR_config: "Utils/ASR/config.yml"
-ASR_path: "Utils/ASR/epoch_00100.pth"
+ASR_path: "Utils/ASR/epoch_00010.pth"
 
 preprocess_params:
   sr: 24000
